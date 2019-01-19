@@ -13,7 +13,7 @@ library(readr)
 ```
 
 ```{r prepDF,echo=FALSE,results="hide", message=FALSE}
-df <- read_csv("~/Work/mdem_paper/tables/Supplemental_Table_S2.csv")
+df <- read_csv("data/EM.csv")
 df <- as.data.frame(df)
 df_print <- df[, c("Gene_name", "Epi_function", "is.neuro.associated",
                    "exac.pLI", "coexpression_status")]
