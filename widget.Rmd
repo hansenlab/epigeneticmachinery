@@ -1,0 +1,27 @@
+---
+title: The Epigenetic Machinery
+output:
+html_document:
+    theme: journal
+---
+
+This is our widget
+
+```{r, echo=FALSE,results="hide"}
+library(DT)
+library(readr)
+```
+
+```{r prepDF,echo=FALSE,results="hide", message=FALSE}
+df <- read_csv("~/Work/mdem_paper/tables/Supplemental_Table_S2.csv")
+df <- as.data.frame(df)
+df_print <- df[, c("Gene_name", "Epi_function", "is.neuro.associated",
+                   "exac.pLI", "coexpression_status")]
+df_print$Epi_function <- as.factor(df_print$Epi_function)
+df_print$exac.pLI <- round(df_print$exac.pLI, 2)
+
+```
+
+```{r display, echo=FALSE}
+datatable(df_print, filter = "top")
+```
