@@ -13,30 +13,54 @@ library(readr)
 ```{r prepDF,echo=FALSE,results="hide", message=FALSE}
 df <- read_csv("data/EM.csv")
 df <- as.data.frame(df)
-df_print <- df[, c("Gene_name", "Epi_function", "is.neuro.associated",
-                   "exac.pLI", "coexpression_status")]
-df_print$Epi_function <- as.factor(df_print$Epi_function)
-df_print$exac.pLI <- round(df_print$exac.pLI, 2)
 
+df_basic <- df[, c("Gene_name", "exac.pLI", "coexpression_status")]
+names(df_basic) <- c("Gene_Name", "pLI", "Coexprs")
+df_basic$pLI <- round(df_basic$pLI, 2)
+df_basic$Coexprs <- as.factor(df_basic$Coexprs)
+levels(df_basic$Coexprs) <- sub("coexpressed", "coexp", levels(df_basic$Coexprs))
+
+df_func <- df[, c("Epi_function", "Enzymatic.activity", "Reading.activity", "TF_activity",
+                  "is.MDEM", "is.neuro.associated", "is.ca.associated")]
+names(df_func) <- c("Epig_Function", "Enzy_Activity", "Read_Activity", "TF_Activity", "Is_MDEM", "Is_Neuro_Assoc", "Is_Cancer_Assoc")
+df_func$Epig_Function <- as.factor(df_func$Epig_Function)
+levels(df_func$Epig_Function) <- gsub(";", "; ", levels(df_func$Epig_Function))
+df_func$Enzy_Activity <- as.factor(df_func$Enzy_Activity)
+df_func$Read_Activity <- as.factor(df_func$Read_Activity)
+levels(df_func$Read_Activity) <- gsub(";", "; ", levels(df_func$Read_Activity))
+df_func$TF_Activity <- as.factor(ifelse(df_func$TF_Activity, "TF", "Not TF"))
+df_func$Is_MDEM <- as.factor(ifelse(df_func$Is_MDEM, "MDEM", "Not MDEM"))
+df_func$Is_Neuro_Assoc <- as.factor(ifelse(df_func$Is_Neuro_Assoc, "Neuro", "Not Neuro"))
+df_func$Is_Cancer_Assoc <- as.factor(ifelse(df_func$Is_Cancer_Assoc, "Cancer", "Not Cancer"))
+
+df_names <- df[, c("Alt_Gene_names", "Gene_name_exac", "Gene_name_gtex", "Chr", "Strand", "Start_Pos", "End_Pos")]
+names(df_names) <- c("Gene_Name_Alternatives", "Gene_Name_ExAC", "Gene_Name_GTEx", "Chr", "Strand", "Start", "End")
+
+df_omim <- df[, c("OMIM_all_phenotypes")]
+names(df_omim) <- c("OMIM_All_Phenotypes")
+
+df_protein <- df[, c("Protein.names", "Interpro.Domains")]
+
+df_print <- cbind(df_basic, df_func, df_omim, df_names)
+df_print <- df_print[order(df_print$Gene_Name),]
 ```
 
 ```{r display, echo=FALSE}
 datatable(df_print, filter = "top", rownames = FALSE,
-          extensions = "Buttons",
+          extensions = c("Buttons", "ColReorder"),
           options = list(pageLength = 300,
                          dom = "Bfrtip",
-                         buttons = c("csv", "pdf", "colvis")))
+                         buttons = c("csv", "pdf", "colvis"),
+                         colReorder = TRUE))
 ```
 
 
-This website lists the component of the epigenetic machinery as described in CITATION.
+This website lists the component of the epigenetic machinery as described in
 
+> L Boukas, JM Havrilla, AR Quinlan, HT Bjornsson, KD Hansen.  
+> _Co-expression patterns define epigenetic regulators associated with neurological dysfunction._  
+> bioRxiv 2018, 219097, [DOI](https://doi.org/10.1101/219097)
 
+SHORT DESCRIPTION FROM PAPER
 
-
-## INTERNAL FOR TESTING
-
-1. better columns names
-2. control left/right justification
-3. interface for selecting display columns?
-
+COLUMN DESCRIPTIONS
