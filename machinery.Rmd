@@ -2,8 +2,15 @@
 title: The Epigenetic Machinery
 output:
 html_document:
-    theme: journal
+  theme: journal
 ---
+
+<style type="text/css">
+.main-container {
+  margin-left: 10px;
+  margin-right: auto;
+}
+</style>
 
 ```{r, echo=FALSE,results="hide"}
 library(DT)
@@ -47,13 +54,26 @@ df_print <- df_print[order(df_print$Gene_Name),]
 
 ```{r display, echo=FALSE}
 datatable(df_print, filter = "top", rownames = FALSE,
-          extensions = c("Buttons", "ColReorder"),
-          options = list(pageLength = 300,
-                         dom = "Bfrtip",
-                         buttons = c("csv", "pdf", "colvis"),
-                         colReorder = TRUE))
+          extensions = c("Buttons", "ColReorder", "FixedHeader"),
+          colnames = c("Gene Name" = 1, "Epigenetic Function" = 4,
+                       "Enzymatic Activity" = 5, 
+                       "Reader Activity" = 6, "TF Activity" = 7),
+          options = list(dom = "Bfrtip",
+                         colReorder = TRUE,
+                         fixedHeader = TRUE,
+                         pageLength = 300,
+                         columnDefs = list(list(targets = c(7:10, 11:13, 15:17), visible = FALSE)),
+                         buttons = list(c("colvis", "csv"))
+                         #buttons = list(list(extend = "columnsToggle",
+                         #                    columns = 1:7))
+                         ## buttons = list(c("csv", "colvis"),
+                         ##                list(extend = "colvisGroup",
+                         ##                            text = "Disease",
+                         ##                            hide = 7:10
+                         ##                     ))
+                         ))
+                         
 ```
-
 
 This website lists the component of the epigenetic machinery as described in
 
