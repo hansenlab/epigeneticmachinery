@@ -5,8 +5,6 @@ html_document:
     theme: journal
 ---
 
-This is our widget
-
 ```{r, echo=FALSE,results="hide"}
 library(DT)
 library(readr)
@@ -22,10 +20,6 @@ df_print$exac.pLI <- round(df_print$exac.pLI, 2)
 
 ```
 
-1. better columns names
-2. control left/right justification
-3. interface for selecting display columns?
-
 ```{r display, echo=FALSE}
 datatable(df_print, filter = "top", rownames = FALSE,
           extensions = "Buttons",
@@ -33,3 +27,16 @@ datatable(df_print, filter = "top", rownames = FALSE,
                          dom = "Bfrtip",
                          buttons = c("csv", "pdf", "colvis")))
 ```
+
+
+This website lists the component of the epigenetic machinery as described in CITATION.
+
+
+
+
+## INTERNAL FOR TESTING
+
+1. better columns names
+2. control left/right justification
+3. interface for selecting display columns?
+
