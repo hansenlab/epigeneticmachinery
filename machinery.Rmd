@@ -36,7 +36,7 @@ df_func$Is_Cancer_Assoc <- as.factor(ifelse(df_func$Is_Cancer_Assoc, "Cancer", "
 df_names <- df[, c("Alt_Gene_names", "Gene_name_exac", "Gene_name_gtex", "Chr", "Strand", "Start_Pos", "End_Pos")]
 names(df_names) <- c("Gene_Name_Alternatives", "Gene_Name_ExAC", "Gene_Name_GTEx", "Chr", "Strand", "Start", "End")
 
-df_omim <- df[, c("OMIM_all_phenotypes")]
+df_omim <- df[, c("OMIM_all_phenotypes"), drop = FALSE]
 names(df_omim) <- c("OMIM_All_Phenotypes")
 
 df_protein <- df[, c("Protein.names", "Interpro.Domains")]
