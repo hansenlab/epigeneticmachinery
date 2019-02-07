@@ -64,15 +64,13 @@ datatable(df_print, filter = "top", rownames = FALSE,
                          pageLength = 300,
                          columnDefs = list(list(targets = c(7:10, 11:13, 15:17), visible = FALSE)),
                          buttons = list(c("colvis", "csv"))
-                         #buttons = list(list(extend = "columnsToggle",
-                         #                    columns = 1:7))
-                         ## buttons = list(c("csv", "colvis"),
-                         ##                list(extend = "colvisGroup",
-                         ##                            text = "Disease",
-                         ##                            hide = 7:10
-                         ##                     ))
                          ))
-                         
+### buttons = list(list(extend = "columnsToggle",
+###                     columns = 1:7))
+### buttons = list(c("csv", "colvis"),
+###                list(extend = "colvisGroup",
+###                            text = "Disease",
+###                            hide = 7:10
 ```
 
 This website lists the component of the epigenetic machinery as described in
