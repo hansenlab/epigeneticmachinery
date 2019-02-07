@@ -48,7 +48,7 @@ names(df_names) <- c("Gene_Name_Alternatives", "Gene_Name_ExAC", "Gene_Name_GTEx
 df_omim <- df[, c("OMIM_all_phenotypes"), drop = FALSE]
 names(df_omim) <- c("OMIM_All_Phenotypes")
 
-df_protein <- df[, c("Protein.names", "Interpro.Domains")]
+df_protein <- df[, c("Protein.names", "Interpro.Domains", "Entry")]
 
 rownames(web) <- web$Gene_name
 web[df_basic$Gene_Name,]
@@ -56,11 +56,8 @@ df_web <- data.frame(gnomAD = sprintf('<a href="https://gnomad.broadinstitute.or
                      OMIM = sprintf('<a href="https://www.omim.org/entry/%s" target="_blank">%s</a>', web$mim_number, web$mim_number),
                      GTEx = sprintf('<a href="https://gtexportal.org/home/gene/%s" target="_blank">%s</a>', df_names$Gene_Name_GTEx,  df_names$Gene_Name_GTEx),
                      COSMIC = sprintf('<a href="https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=%s" target="_blank">%s</a>', web$Gene_name, web$Gene_name),
-                     UniProt = sprintf('<a href="https://www.uniprot.org/uniprot/%s" target="_blank">%s</a>', web$Entry, web$Entry),
+                     UniProt = sprintf('<a href="https://www.uniprot.org/uniprot/%s" target="_blank">%s</a>', df_protein$Entry, df_protein$Entry),
                      stringsAsFactors = FALSE)
-
-
-
 df_print <- cbind(df_basic, df_func, df_omim, df_names, df_web)
 df_print <- df_print[order(df_print$Gene_Name),]
 ```
