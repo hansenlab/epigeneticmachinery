@@ -57,6 +57,8 @@ df_web <- data.frame(gnomAD = sprintf('<a href="https://gnomad.broadinstitute.or
                      GTEx = sprintf('<a href="https://gtexportal.org/home/gene/%s" target="_blank">%s</a>', df_names$Gene_Name_GTEx,  df_names$Gene_Name_GTEx),
                      COSMIC = sprintf('<a href="https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=%s" target="_blank">%s</a>', web$Gene_name, web$Gene_name),
                      UniProt = sprintf('<a href="https://www.uniprot.org/uniprot/%s" target="_blank">%s</a>', df_protein$Entry, df_protein$Entry),
+                     Interpro = sprintf('<a href="https://www.ebi.ac.uk/interpro/protein/%s" target="_blank">%s</a>', df_protein$Entry, df_protein$Entry),
+                     
                      stringsAsFactors = FALSE)
 df_print <- cbind(df_basic, df_func, df_omim, df_names, df_web)
 df_print <- df_print[order(df_print$Gene_Name),]
