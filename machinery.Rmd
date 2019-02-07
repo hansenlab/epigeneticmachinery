@@ -20,6 +20,8 @@ library(readr)
 ```{r prepDF,echo=FALSE,results="hide", message=FALSE}
 df <- read_csv("data/EM.csv")
 df <- as.data.frame(df)
+web <- read_csv("data/EM_genes_website.csv")
+web <- as.data.frame(web)
 
 df_basic <- df[, c("Gene_name", "exac.pLI", "coexpression_status")]
 names(df_basic) <- c("Gene_Name", "pLI", "Coexprs")
@@ -48,12 +50,20 @@ names(df_omim) <- c("OMIM_All_Phenotypes")
 
 df_protein <- df[, c("Protein.names", "Interpro.Domains")]
 
-df_print <- cbind(df_basic, df_func, df_omim, df_names)
+rownames(web) <- web$Gene_name
+web[df_basic$Gene_Name,]
+df_web <- data.frame(gnomAD = sprintf('<a href="https://gnomad.broadinstitute.org/gene/%s">%s</a>', web$Ensembl_id, web$Ensembl_id),
+                     OMIM = sprintf('<a href="https://www.omim.org/entry/%s">%s</a>', web$mim_number, web$mim_number),
+                     stringsAsFactors = FALSE)
+
+
+
+df_print <- cbind(df_basic, df_func, df_omim, df_names, df_web)
 df_print <- df_print[order(df_print$Gene_Name),]
 ```
 
 ```{r display, echo=FALSE}
-datatable(df_print, filter = "top", rownames = FALSE,
+datatable(df_print, filter = "top", rownames = FALSE, escape = FALSE,
           extensions = c("Buttons", "ColReorder", "FixedHeader"),
           colnames = c("Gene Name" = 1, "Epigenetic Function" = 4,
                        "Enzymatic Activity" = 5, 
