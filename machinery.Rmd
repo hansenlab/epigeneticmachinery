@@ -87,10 +87,15 @@ datatable(df_print, filter = "top", rownames = FALSE, escape = FALSE,
 
 This website lists the component of the epigenetic machinery as described in
 
-> L Boukas, JM Havrilla, AR Quinlan, HT Bjornsson, KD Hansen.  
+> L Boukas, JM Havrilla, PF Hickey, AR Quinlan, HT Bjornsson, KD Hansen.  
 > _Co-expression patterns define epigenetic regulators associated with neurological dysfunction._  
-> bioRxiv 2018, 219097, [DOI](https://doi.org/10.1101/219097)
+> Genome Res 29: 532–542. doi:10.1101/gr.239442.118
 
-SHORT DESCRIPTION FROM PAPER
+**Short Description:**  
+This resource provides a curated list of genes encoding for epigenetic regulators, along with additional information detailing their gene co-expression patterns, functional activities, and disease associations.
 
-COLUMN DESCRIPTIONS
+**Column Descriptions:**  
+- **Gene Name:** The primary identifier for each gene.  
+- **pLI:** A score reflecting the gene’s intolerance to loss-of-function variants.  
+- **Coexprs:** Status of gene co-expression (shortened to "coexp").  
+
