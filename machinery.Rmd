@@ -89,10 +89,11 @@ This website provides a curated list of epigenetic machinery genes (that is, gen
 
 > L Boukas, JM Havrilla, PF Hickey, AR Quinlan, HT Bjornsson, KD Hansen.  
 > _Co-expression patterns define epigenetic regulators associated with neurological dysfunction._  
-> Genome Res 29: 532–542. doi:[10.1101/gr.239442.118](https://doi.org/10.1101/gr.239442.118)
+> Genome Res 29: 532–542. (https://doi.org/10.1101/gr.239442.118)
 
 **Column Descriptions:**  
 The columns are meant to provide information about basic properties of each of the genes. They are the following:
+
 - **Gene Name** 
 - **pLI:** A metric of loss-of-function intolerance (initially derived by the ExAC consortium, now provided by gnomAD), ranging between 0 and 1. The closer it is to 1, the more intolerant to loss-of-function variation a gene is. Note that pLI is essentially a binary measure. 
 - **Coexprs:** Co-expression status. In our paper we show that epigenetic machinery genes can be partitioned into 3 categories: 'highly co-expressed', 'co-expressed', and 'not co-expressed', based on their expression patterns in adult human tissues (GTEx). The genes in the highly co-expressed category tend to have very high pLI scores, and are enriched for genes causing neurodevelopmental Mendelian disorders.
