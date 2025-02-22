@@ -85,17 +85,27 @@ datatable(df_print, filter = "top", rownames = FALSE, escape = FALSE,
 ###                            hide = 7:10
 ```
 
-This website lists the component of the epigenetic machinery as described in
+This website provides a curated list of epigenetic machinery genes (that is, genes encoding for epigenetic regulators) as described in
 
 > L Boukas, JM Havrilla, PF Hickey, AR Quinlan, HT Bjornsson, KD Hansen.  
 > _Co-expression patterns define epigenetic regulators associated with neurological dysfunction._  
-> Genome Res 29: 532–542. doi:10.1101/gr.239442.118
-
-**Short Description:**  
-This resource provides a curated list of genes encoding for epigenetic regulators, along with additional information detailing their gene co-expression patterns, functional activities, and disease associations.
+> Genome Res 29: 532–542. doi:[10.1101/gr.239442.118](https://doi.org/10.1101/gr.239442.118)
 
 **Column Descriptions:**  
-- **Gene Name:** The primary identifier for each gene.  
-- **pLI:** A score reflecting the gene’s intolerance to loss-of-function variants.  
-- **Coexprs:** Status of gene co-expression (shortened to "coexp").  
+The columns are meant to provide information about basic properties of each of the genes. They are the following:
+- **Gene Name** 
+- **pLI:** A metric of loss-of-function intolerance (initially derived by the ExAC consortium, now provided by gnomAD), ranging between 0 and 1. The closer it is to 1, the more intolerant to loss-of-function variation a gene is. Note that pLI is essentially a binary measure. 
+- **Coexprs:** Co-expression status. In our paper we show that epigenetic machinery genes can be partitioned into 3 categories: 'highly co-expressed', 'co-expressed', and 'not co-expressed', based on their expression patterns in adult human tissues (GTEx). The genes in the highly co-expressed category tend to have very high pLI scores, and are enriched for genes causing neurodevelopmental Mendelian disorders.
+- **Epigenetic Function:** Whether the encoded protein is a epigenetic writer, eraser, reader, remodeler, or dual function regulator.
+- **Enzymatic activity:** For writers, erasers, and remodelers. For example, whether a writer enzyme is a histone methyltransferase (HMT). 
+- **Reader activity:** For readers. For example, whether a reader protein is a histone methylation reader (HMR).
+- **TF activity:** Whether the encoded protein has a DNA-binding domain classifying it as a TF as well.
+- **Chr:** Chromosome
+- **gnomAD:** Link to corresponding gnomAD entry
+- **OMIM:** Link to corresponding OMIM entry
+- **GTEx:** Link to corresponding GTEx entry
+- **COSMIC:** Link to corresponding COSMIC entry
+- **UniProt:** Link to corresponding UniProt entry
+- **Interpro:** Link to corresponding Interpro entry
+
 
